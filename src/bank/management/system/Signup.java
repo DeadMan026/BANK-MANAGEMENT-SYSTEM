@@ -1,12 +1,14 @@
 package bank.management.system;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 import javax.swing.*;
 
 import com.toedter.calendar.JDateChooser;
 
-public class Signup extends JFrame {
+public class Signup extends JFrame implements ActionListener {
 
     Random ran = new Random();
     String formNo = "" + (ran.nextInt(9000) + 1000);
@@ -14,6 +16,7 @@ public class Signup extends JFrame {
     JTextField textName, textFName, textEmail, textAddress, textCity, textState, textPinCode;
     JDateChooser dateChooser;
     JRadioButton r1, r2, r3, r4, r5;
+    JButton next;
     
     Signup() {
         super("APPLICATION FORM");
@@ -86,6 +89,11 @@ public class Signup extends JFrame {
         r3.setBounds(450,280,100,30);
         add(r3);
 
+        ButtonGroup genderGroup = new ButtonGroup();
+        genderGroup.add(r1);
+        genderGroup.add(r2);
+        genderGroup.add(r3);
+
         JLabel label7 = new JLabel("Date Of Birth:");
         label7.setFont(new Font("Calibri",Font.BOLD,20));
         label7.setForeground(Color.BLACK);
@@ -123,6 +131,10 @@ public class Signup extends JFrame {
         r5.setFont(new Font("Arial",Font.PLAIN,18));
         r5.setBounds(370,430,120,30);
         add(r5);
+
+        ButtonGroup maritalGroup = new ButtonGroup();
+        maritalGroup.add(r4);
+        maritalGroup.add(r5);
 
         JLabel label10 = new JLabel("Address:");
         label10.setFont(new Font("Calibri",Font.BOLD,20));
@@ -168,6 +180,14 @@ public class Signup extends JFrame {
         textPinCode.setBounds(250,630,315,30);
         add(textPinCode);
 
+        next = new JButton("Next");
+        next.setFont(new Font("Calibri",Font.BOLD,18));
+        next.setForeground(Color.WHITE);
+        next.setBackground(Color.BLACK);
+        next.setBounds(485,675,80,30);
+        next.addActionListener(this);
+        add(next);
+
         /*  -- ADD YOUR OWN BACKGROUND -- 
         ImageIcon ii1 = new ImageIcon(ClassLoader.getSystemResource("icon/signup.jpg"));
         Image ii2 = ii1.getImage().getScaledInstance(750, 750, Image.SCALE_DEFAULT);
@@ -185,7 +205,10 @@ public class Signup extends JFrame {
         setLocation(350, 60);
         setVisible(true);
     }
-
+    @Override
+    public void actionPerformed(ActionEvent e){
+        
+    }
     public static void main(String[] args) {
         new Signup();
     }
