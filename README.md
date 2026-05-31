@@ -4,15 +4,40 @@ A Java-based desktop application for managing banking operations. This project u
 
 ## Current Scope
 - **Login Screen**: Swing-based ATM style login window.
-- **Signup Screen**: Account application form with a calendar date picker.
+- **Signup Screen**: Account application form (Step 1) with data persistence.
+- **Signup Step 2**: Skeleton for additional user details.
+- **Database Integration**: Secure MySQL connection using environment variables.
 - **Static Assets**: Project images are bundled under `src/icon/`.
 
 ## Project Structure
 - `src/bank/management/system/`: Source code directory.
   - `Login.java`: Entry point for the application.
-  - `Signup.java`: Signup form screen.
+  - `Signup.java`: Primary signup form with database submission.
+  - `Signup2.java`: Second phase of the signup process.
+  - `conn.java`: Database connection handler.
 - `src/icon/`: Assets directory containing images for the UI.
 - `lib/`: Third-party jar dependencies committed with the project.
+
+## Database Configuration
+To keep the database credentials secure, the application uses an environment variable for the MySQL password.
+
+### Setting the Environment Variable
+#### Windows (PowerShell)
+```powershell
+[System.Environment]::SetEnvironmentVariable("DB_PASSWORD", "your_password_here", "User")
+```
+*Note: You may need to restart your IDE or terminal for the change to take effect.*
+
+#### Linux / macOS
+```bash
+export DB_PASSWORD='your_password_here'
+```
+
+### Loading the Environment Variable in Java
+The variable is loaded in `conn.java` using:
+```java
+String db_pass = System.getenv("DB_PASSWORD");
+```
 
 ## Getting Started
 ### Prerequisites

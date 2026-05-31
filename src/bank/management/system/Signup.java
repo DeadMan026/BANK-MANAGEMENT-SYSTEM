@@ -84,15 +84,9 @@ public class Signup extends JFrame implements ActionListener {
         r2.setBounds(340,280,100,30);
         add(r2);
 
-        r3 = new JRadioButton("Other");
-        r3.setFont(new Font("Arial",Font.PLAIN,18));
-        r3.setBounds(450,280,100,30);
-        add(r3);
-
         ButtonGroup genderGroup = new ButtonGroup();
         genderGroup.add(r1);
         genderGroup.add(r2);
-        genderGroup.add(r3);
 
         JLabel label7 = new JLabel("Date Of Birth:");
         label7.setFont(new Font("Calibri",Font.BOLD,20));
@@ -122,17 +116,23 @@ public class Signup extends JFrame implements ActionListener {
         label9.setBounds(60,435,200,30);
         add(label9);
 
-        r4 = new JRadioButton("Married");
+        r3 = new JRadioButton("Married");
+        r3.setFont(new Font("Arial",Font.PLAIN,18));
+        r3.setBounds(250,430,120,30);
+        add(r3);
+
+        r4 = new JRadioButton("Unmarried");
         r4.setFont(new Font("Arial",Font.PLAIN,18));
-        r4.setBounds(250,430,120,30);
+        r4.setBounds(370,430,120,30);
         add(r4);
 
-        r5 = new JRadioButton("Unmarried");
+        r5 = new JRadioButton("Other");
         r5.setFont(new Font("Arial",Font.PLAIN,18));
-        r5.setBounds(370,430,120,30);
+        r5.setBounds(490,430,120,30);
         add(r5);
 
         ButtonGroup maritalGroup = new ButtonGroup();
+        maritalGroup.add(r3);
         maritalGroup.add(r4);
         maritalGroup.add(r5);
 
@@ -208,6 +208,45 @@ public class Signup extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
         
+        String formno = formNo;
+        String name =  textName.getText();
+        String fname = textFName.getText();
+        String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+        String gender = null;
+        if(r1.isSelected()){
+            gender = "male";
+        } else if (r2.isSelected()){
+            gender = "Female";
+        }   
+        String email = textEmail.getText();
+        String marital = null;
+        if(r3.isSelected()){
+            marital = "Married";
+        } else if (r4.isSelected()){
+            marital = "Unmarried";
+        } else if (r5.isSelected()){
+            marital = 
+        }
+        String address = textAddress.getText(); 
+        String city = textCity.getText();
+        String state = textState.getText();
+        String pincode = textPinCode.getText();
+        
+        try{
+            if(textName.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Fill out all the fields");
+            } else {
+                conn con1 = new conn();
+                String q = "INSERT INTO signup VALUES('"+formno+"','"+name+"','"+fname+"','"+dob+"','"+gender+"','"+email+"','"+marital+"','"+address+"','"+city+"','"+pincode+"','"+state+"')";
+                con1.statement.executeUpdate(q);
+                new Signup2();
+                setVisible(false);
+            }
+
+        } catch (Exception E){
+            E.printStackTrace();
+        }
+
     }
     public static void main(String[] args) {
         new Signup();
