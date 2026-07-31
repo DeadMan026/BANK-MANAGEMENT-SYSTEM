@@ -225,7 +225,7 @@ public class Signup extends JFrame implements ActionListener {
         } else if (r4.isSelected()){
             marital = "Unmarried";
         } else if (r5.isSelected()){
-            marital = 
+            marital = "Other";
         }
         String address = textAddress.getText(); 
         String city = textCity.getText();
