@@ -239,7 +239,7 @@ public class Signup extends JFrame implements ActionListener {
                 conn con1 = new conn();
                 String q = "INSERT INTO signup VALUES('"+formno+"','"+name+"','"+fname+"','"+dob+"','"+gender+"','"+email+"','"+marital+"','"+address+"','"+city+"','"+pincode+"','"+state+"')";
                 con1.statement.executeUpdate(q);
-                new Signup2();
+                new Signup2(formNo);
                 setVisible(false);
             }
 
